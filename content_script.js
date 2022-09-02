@@ -1,14 +1,14 @@
 console.log(
   '============================================content!!!===========================================',
 );
-
+var gmailCapture = chrome.extension.connect({
+	name: "gmail <-> background.js"
+});
 if (window.location.hostname == 'mail.google.com') {
-	var gmailCapture = chrome.extension.connect({
-		name: "gmail <-> background.js"
-	});
 	
+	var filter  = Array.prototype.filter;
+
 	function grabUpwork() {
-		var filter  = Array.prototype.filter;
 		var rows = document.querySelectorAll("table.F.cf.zt tbody tr.zA.zE");
 		var upworkRows = filter.call(rows, function(row) {
 			var email = row.querySelector("td.yX.xY div.afn span.bA4 span").getAttribute('email');
