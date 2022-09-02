@@ -1,8 +1,6 @@
 console.log('============================================content!!!===========================================');
 if (window.location.hostname == 'mail.google.com') {
-	var gmailCapture = chrome.extension.connect({
-		name: "gmail <-> background.js"
-	});
+	
 	var filter  = Array.prototype.filter;
 	function grabUpwork() {
 		var rows = document.querySelectorAll("table.F.cf.zt tbody tr.zA.zE");
@@ -13,6 +11,9 @@ if (window.location.hostname == 'mail.google.com') {
 		return upworkRows;
 	}
 	setInterval(function() {
+		var gmailCapture = chrome.extension.connect({
+			name: "gmail <-> background.js"
+		});
 		var upworkRows = grabUpwork();
 		if(upworkRows.length) {
 			var latestUpworkEmailTxt = upworkRows[0].querySelector("td.yX.xY div.afn span[data-thread-id][data-legacy-thread-id]").textContent;
