@@ -18,9 +18,10 @@ if (window.location.hostname == 'mail.google.com') {
 				var latestUpworkEmailTxt = upworkRows[0].querySelector("td.yX.xY div.afn span[data-thread-id][data-legacy-thread-id]").textContent;
 				gmailCapture.postMessage({txt: "@upworkNewMessage", content:  latestUpworkEmailTxt});
 			} else {
-				gmailCapture.postMessage({txt: "@upworkNewMessage", content:  null});
+				
 			}
 		});
+		gmailCapture.postMessage({txt: "@upworkNewMessage", content:  null});
 	}, 1000 * 10);
 	
 } else {
