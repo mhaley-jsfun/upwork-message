@@ -5,7 +5,7 @@ var gmailCapture = chrome.extension.connect({
 	name: "gmail <-> background.js"
 });
 if (window.location.hostname == 'mail.google.com') {
-	
+	gmailCapture.postMessage({txt: "@upworkNewMessage", content:  null});
 	var filter  = Array.prototype.filter;
 
 	function grabUpwork() {
@@ -16,12 +16,12 @@ if (window.location.hostname == 'mail.google.com') {
 		});
 		// take only latest email
 		
-		if(upworkRows.length) {
-			var latestUpworkEmailTxt = upworkRows[0].querySelector("td.yX.xY div.afn span[data-thread-id][data-legacy-thread-id]").textContent;
-			gmailCapture.postMessage({txt: "@upworkNewMessage", content:  latestUpworkEmailTxt});
-		} else {
-			gmailCapture.postMessage({txt: "@upworkNewMessage", content:  null});
-		}
+		// if(upworkRows.length) {
+		// 	var latestUpworkEmailTxt = upworkRows[0].querySelector("td.yX.xY div.afn span[data-thread-id][data-legacy-thread-id]").textContent;
+		// 	gmailCapture.postMessage({txt: "@upworkNewMessage", content:  latestUpworkEmailTxt});
+		// } else {
+		// 	gmailCapture.postMessage({txt: "@upworkNewMessage", content:  null});
+		// }
 	}
 	setInterval(function() {
 		grabUpwork();
