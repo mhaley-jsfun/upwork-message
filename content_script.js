@@ -4,25 +4,23 @@ if (window.location.hostname == 'mail.google.com') {
 		name: "gmail <-> background.js"
 	});
 	var filter  = Array.prototype.filter;
-	function grabUpwork(callback) {
+	function grabUpwork() {
 		var rows = document.querySelectorAll("table.F.cf.zt tbody tr.zA.zE");
 		var upworkRows = filter.call(rows, function(row) {
 			var email = row.querySelector("td.yX.xY div.afn span.bA4 span").getAttribute('email');
 			return email.indexOf("hotjar.com") > -1; //@upwork.com,  email.indexOf("room_") > -1
 		});
-		return callback(upworkRows);
+		return upworkRows;
 	}
 	setInterval(function() {
-		grabUpwork(function(upworkRows) {
-			if(upworkRows.length) {
-				var latestUpworkEmailTxt = upworkRows[0].querySelector("td.yX.xY div.afn span[data-thread-id][data-legacy-thread-id]").textContent;
-				gmailCapture.postMessage({txt: "@upworkNewMessage", content:  latestUpworkEmailTxt});
-			} else {
-				
-			}
-		});
-		gmailCapture.postMessage({txt: "@upworkNewMessage", content:  null});
-	}, 1000 * 10);
+		var upworkRows = grabUpwork();
+		if(upworkRows.length) {
+			var latestUpworkEmailTxt = upworkRows[0].querySelector("td.yX.xY div.afn span[data-thread-id][data-legacy-thread-id]").textContent;
+			gmailCapture.postMessage({txt: "@upworkNewMessage", content:  latestUpworkEmailTxt});
+		} else {
+			gmailCapture.postMessage({txt: "@upworkNewMessage", content:  null});		
+		}
+	}, 1000 * 5);
 	
 } else {
   var banTextsArr = [
