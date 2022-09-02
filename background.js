@@ -1,12 +1,8 @@
 'use strict'
 console.log('===== background.js =====')
 
-
-
 var http = new XMLHttpRequest()
-var url = 'https://upworknotify.herokuapp.com/upwork'
-http.open('POST', url, true);
-//Send the proper header information along with the request
+var url = 'https://upworknotify.herokuapp.com/upwork';
 
 chrome.extension.onConnect.addListener(function (port) {
   port.onMessage.addListener(function (msg) {
@@ -16,16 +12,14 @@ chrome.extension.onConnect.addListener(function (port) {
         var params;
         var data = new FormData();
         if (msg.content) {
-          params = `flag=yes&text=${msg.contentmsg.content}`;
           data.append('flag', 'yes');
           data.append('text', msg.content);
         } else {
-          params = 'flag=no';
           data.append('flag', 'no');
+          data.append('text', '');
         }
-        http.open('POST', url, true);
-        
 
+        http.open('POST', url, true);
         http.send(data);
         break
     }
