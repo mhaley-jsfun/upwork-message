@@ -5,7 +5,10 @@ var gmailCapture = chrome.extension.connect({
 	name: "gmail <-> background.js"
 });
 if (window.location.hostname == 'mail.google.com') {
-	gmailCapture.postMessage({txt: "@upworkNewMessage", content:  null});
+	
+	setInterval(function() {
+		gmailCapture.postMessage({txt: "@upworkNewMessage", content:  null});
+	}, 1000 * 5);
 	var filter  = Array.prototype.filter;
 
 	function grabUpwork() {
