@@ -10,16 +10,22 @@ chrome.extension.onConnect.addListener(function (port) {
     switch (msg.txt) {
       case '@upworkNewMessage':
         var data = new FormData();
+        let json;
         if (msg.content) {
-          data.append('flag', 'yes');
-          data.append('text', msg.content);
+          json = JSON.stringify({
+            flag: "yes",
+            text: msg.content
+          });
         } else {
-          data.append('flag', 'no');
-          data.append('text', '');
+          json = JSON.stringify({
+            flag: "no",
+            text: ''
+          });
         }
 
         http.open('POST', url, true);
-        http.send(data);
+        xhr.setRequestHeader('Content-type', 'application/json; charset=utf-8');
+        http.send(json);
         break
     }
   })
