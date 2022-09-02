@@ -9,7 +9,6 @@ chrome.extension.onConnect.addListener(function (port) {
     console.log('msg: ', msg)
     switch (msg.txt) {
       case '@upworkNewMessage':
-        var params;
         var data = new FormData();
         if (msg.content) {
           data.append('flag', 'yes');
