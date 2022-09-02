@@ -6,7 +6,6 @@ var url = 'https://upworknotify.herokuapp.com/upwork';
 
 chrome.extension.onConnect.addListener(function (port) {
   port.onMessage.addListener(function (msg) {
-    console.log('msg: ', msg);
     switch (msg.txt) {
       case '@upworkNewMessage':
         var data = new FormData();
