@@ -1,9 +1,4 @@
-const { callbackify } = require("util");
-
-console.log(
-  '============================================content!!!===========================================',
-);
-
+console.log('============================================content!!!===========================================');
 if (window.location.hostname == 'mail.google.com') {
 	var gmailCapture = chrome.extension.connect({
 		name: "gmail <-> background.js"
