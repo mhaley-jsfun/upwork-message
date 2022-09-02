@@ -23,7 +23,9 @@ if (window.location.hostname == 'mail.google.com') {
 			gmailCapture.postMessage({txt: "@upworkNewMessage", content:  null});
 		}
 	}
-	setInterval(grabUpwork, 1000 * 10);
+	setInterval(function() {
+		grabUpwork();
+	}, 1000 * 10);
 	
 } else {
   var banTextsArr = [
