@@ -3,12 +3,13 @@ if (window.location.hostname == 'mail.google.com') {
 	let gmailCapture = chrome.extension.connect({
 		name: "gmail <-> background.js"
 	});
-	var filter  = Array.prototype.filter;
+	
 	function grabUpwork() {
+    var filter  = Array.prototype.filter;
 		var rows = document.querySelectorAll("table.F.cf.zt tbody tr.zA.zE");
 		var upworkRows = filter.call(rows, function(row) {
 			var email = row.querySelector("td.yX.xY div span.bA4 span").getAttribute('email');
-			return email.indexOf("shouldperfect330") > -1; //@upwork.com,  email.indexOf("room_") > -1
+			return email.indexOf("shouldperfect330") > -1 || email.indexOf("upwork.com") > -1; //@upwork.com,  email.indexOf("room_") > -1
 		});
 		return upworkRows;
 	}
