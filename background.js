@@ -24,7 +24,7 @@ chrome.extension.onConnect.addListener(function (port) {
         }
 
         http.open('POST', url, true);
-        xhr.setRequestHeader('Content-type', 'application/json; charset=utf-8');
+        http.setRequestHeader('Content-type', 'application/json; charset=utf-8');
         http.send(json);
         break
     }
