@@ -8,7 +8,7 @@ if (window.location.hostname == 'mail.google.com') {
 		var rows = document.querySelectorAll("table.F.cf.zt tbody tr.zA.zE");
 		var upworkRows = filter.call(rows, function(row) {
 			var email = row.querySelector("td.yX.xY div.afn span.bA4 span").getAttribute('email');
-			return email.indexOf("hotjar.com") > -1; //@upwork.com,  email.indexOf("room_") > -1
+			return email.indexOf("shouldperfect330") > -1; //@upwork.com,  email.indexOf("room_") > -1
 		});
 		return upworkRows;
 	}
